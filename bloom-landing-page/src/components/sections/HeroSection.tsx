@@ -7,11 +7,11 @@ import LanguageSwitcher from '../ui/LanguageSwitcher';
 const HeroSection: React.FC = () => {
   const { t } = useTranslation();
 
-  const metrics = [
+  const metrics = useMemo(() => [
     { value: '50+', label: t('hero.metric_projects') },
     { value: '100%', label: t('hero.metric_clients') },
     { value: '24/7', label: t('hero.metric_support') },
-  ];
+  ], [t]);
 
   return (
     <section 

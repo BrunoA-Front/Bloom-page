@@ -1,11 +1,12 @@
 import { FaFigma, FaReact, FaNodeJs, FaMobileAlt, FaRocket } from 'react-icons/fa';
 import { DiRuby } from 'react-icons/di';
 import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
 
 const ServicesSection: React.FC = () => {
   const { t } = useTranslation();
 
-  const services = [
+  const services = useMemo(() => [
     {
       icon: <FaRocket size={40} className="mb-4 text-purple-400" />,
       title: t('services.mvp_title'),
@@ -36,7 +37,7 @@ const ServicesSection: React.FC = () => {
       title: t('services.backend_title'),
       description: t('services.backend_desc'),
     },
-  ];
+  ], [t]);
 
   return (
     <section className="py-20 bg-gray-900 text-white">

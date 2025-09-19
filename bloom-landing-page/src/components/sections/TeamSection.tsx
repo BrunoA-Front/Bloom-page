@@ -4,11 +4,12 @@ import BrunoImg from '../../assets/images/Bruno Aruza diseñador web y analista 
 import FlorenciaImg from '../../assets/images/Florencia gironi Produc manager .jpeg';
 import GabrielImg from '../../assets/images/Gabriel vides desarrollador full stack.jpeg';
 import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
 
 const TeamSection: React.FC = () => {
   const { t } = useTranslation();
 
-  const teamMembers = [
+  const teamMembers = useMemo(() => [
     {
       name: 'Agustin Lanzabequia',
       role: t('team.agustin_role'),
@@ -33,7 +34,7 @@ const TeamSection: React.FC = () => {
       skills: 'Vue.js, Django, PostgreSQL, Docker',
       avatar: GabrielImg,
     },
-  ];
+  ], [t]);
 
   return (
     <section className="py-20 bg-gray-900 text-white">

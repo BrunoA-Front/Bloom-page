@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 
 const ReadinessTestSection: React.FC = () => {
   const { t } = useTranslation();
 
-  const questions = [
+  const questions = useMemo(() => [
     {
       question: t('readiness.q1'),
       options: [t('readiness.q1_o1'), t('readiness.q1_o2'), t('readiness.q1_o3'), t('readiness.q1_o4')],
@@ -25,7 +25,7 @@ const ReadinessTestSection: React.FC = () => {
       question: t('readiness.q5'),
       options: [t('readiness.q5_o1'), t('readiness.q5_o2'), t('readiness.q5_o3'), t('readiness.q5_o4')],
     },
-  ];
+  ], [t]);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);

@@ -1,11 +1,12 @@
 
 
 import { useTranslation } from 'react-i18next';
+import { useMemo } from 'react';
 
 const PortfolioSection: React.FC = () => {
   const { t } = useTranslation();
 
-  const projects = [
+  const projects = useMemo(() => [
     {
       title: t('portfolio.project_alpha_title'),
       description: t('portfolio.project_alpha_desc'),
@@ -42,7 +43,7 @@ const PortfolioSection: React.FC = () => {
       imageUrl: 'https://picsum.photos/seed/project6/600/400',
       link: '#',
     },
-  ];
+  ], [t]);
 
   return (
     <section className="py-20 bg-gray-800 text-white">
