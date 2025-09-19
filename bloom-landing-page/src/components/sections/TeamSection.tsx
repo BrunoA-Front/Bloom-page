@@ -3,39 +3,42 @@ import AgustinImg from '../../assets/images/Agustin lanzabequia desarrollador fu
 import BrunoImg from '../../assets/images/Bruno Aruza diseñador web y analista de marketing.jpeg';
 import FlorenciaImg from '../../assets/images/Florencia gironi Produc manager .jpeg';
 import GabrielImg from '../../assets/images/Gabriel vides desarrollador full stack.jpeg';
-
-const teamMembers = [
-  {
-    name: 'Agustin Lanzabequia',
-    role: 'Desarrollador Full Stack',
-    skills: 'React, Node.js, Python, AWS',
-    avatar: AgustinImg,
-  },
-  {
-    name: 'Bruno Aruza',
-    role: 'Diseñador Web y Analista de Marketing',
-    skills: 'Figma, Adobe XD, Google Analytics, SEO',
-    avatar: BrunoImg,
-  },
-  {
-    name: 'Florencia Gironi',
-    role: 'Product Manager',
-    skills: 'Agile, Scrum, Jira, Roadmapping',
-    avatar: FlorenciaImg,
-  },
-  {
-    name: 'Gabriel Vides',
-    role: 'Desarrollador Full Stack',
-    skills: 'Vue.js, Django, PostgreSQL, Docker',
-    avatar: GabrielImg,
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const TeamSection: React.FC = () => {
+  const { t } = useTranslation();
+
+  const teamMembers = [
+    {
+      name: 'Agustin Lanzabequia',
+      role: t('team.agustin_role'),
+      skills: 'React, Node.js, Python, AWS',
+      avatar: AgustinImg,
+    },
+    {
+      name: 'Bruno Aruza',
+      role: t('team.bruno_role'),
+      skills: 'Figma, Adobe XD, Google Analytics, SEO',
+      avatar: BrunoImg,
+    },
+    {
+      name: 'Florencia Gironi',
+      role: t('team.florencia_role'),
+      skills: 'Agile, Scrum, Jira, Roadmapping',
+      avatar: FlorenciaImg,
+    },
+    {
+      name: 'Gabriel Vides',
+      role: t('team.gabriel_role'),
+      skills: 'Vue.js, Django, PostgreSQL, Docker',
+      avatar: GabrielImg,
+    },
+  ];
+
   return (
     <section className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">Nuestro Equipo</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">{t('team.title')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {teamMembers.map((member, index) => (
             <div key={index} className="text-center bg-gray-800 p-6 rounded-lg border border-gray-700">

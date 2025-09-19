@@ -1,44 +1,47 @@
 import { FaFigma, FaReact, FaNodeJs, FaMobileAlt, FaRocket } from 'react-icons/fa';
 import { DiRuby } from 'react-icons/di';
-
-const services = [
-  {
-    icon: <FaRocket size={40} className="mb-4 text-purple-400" />,
-    title: 'MVP',
-    description: 'Lanzamos tu producto mínimo viable en tiempo récord.',
-  },
-  {
-    icon: <FaReact size={40} className="mb-4 text-blue-400" />,
-    title: 'Desarrollo Web',
-    description: 'Aplicaciones web modernas, rápidas y escalables.',
-  },
-  {
-    icon: <FaFigma size={40} className="mb-4 text-pink-400" />,
-    title: 'Diseño UX/UI',
-    description: 'Interfaces intuitivas y atractivas centradas en el usuario.',
-  },
-  {
-    icon: <FaMobileAlt size={40} className="mb-4 text-green-400" />,
-    title: 'Móvil',
-    description: 'Desarrollo de aplicaciones nativas y multiplataforma.',
-  },
-  {
-    icon: <FaNodeJs size={40} className="mb-4 text-yellow-400" />,
-    title: 'Backend',
-    description: 'Sistemas robustos y eficientes para potenciar tu aplicación.',
-  },
-  {
-    icon: <DiRuby size={40} className="mb-4 text-red-400" />,
-    title: 'Backend',
-    description: 'Sistemas robustos y eficientes para potenciar tu aplicación.',
-  },
-];
+import { useTranslation } from 'react-i18next';
 
 const ServicesSection: React.FC = () => {
+  const { t } = useTranslation();
+
+  const services = [
+    {
+      icon: <FaRocket size={40} className="mb-4 text-purple-400" />,
+      title: t('services.mvp_title'),
+      description: t('services.mvp_desc'),
+    },
+    {
+      icon: <FaReact size={40} className="mb-4 text-blue-400" />,
+      title: t('services.web_dev_title'),
+      description: t('services.web_dev_desc'),
+    },
+    {
+      icon: <FaFigma size={40} className="mb-4 text-pink-400" />,
+      title: t('services.ux_ui_title'),
+      description: t('services.ux_ui_desc'),
+    },
+    {
+      icon: <FaMobileAlt size={40} className="mb-4 text-green-400" />,
+      title: t('services.mobile_title'),
+      description: t('services.mobile_desc'),
+    },
+    {
+      icon: <FaNodeJs size={40} className="mb-4 text-yellow-400" />,
+      title: t('services.backend_title'),
+      description: t('services.backend_desc'),
+    },
+    {
+      icon: <DiRuby size={40} className="mb-4 text-red-400" />,
+      title: t('services.backend_title'),
+      description: t('services.backend_desc'),
+    },
+  ];
+
   return (
     <section className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">Nuestros Servicios</h2>
+        <h2 className="text-4xl font-bold text-center mb-12">{t('services.title')}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div

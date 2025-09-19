@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
-
-const questions = [
-  {
-    question: '¿Tienes una idea clara de tu producto o servicio?',
-    options: ['Sí, muy clara y detallada', 'Tengo una idea general', 'Está en desarrollo', 'No, solo tengo una vaga idea'],
-  },
-  {
-    question: '¿Has definido a tu público objetivo?',
-    options: ['Sí, a fondo', 'Tengo una idea superficial', 'No, no sé por dónde empezar', 'No estoy seguro'],
-  },
-  {
-    question: '¿Cuentas con un presupuesto asignado?',
-    options: ['Sí, y es flexible', 'Sí, pero es ajustado', 'No, estoy buscando financiación', 'Prefiero no decirlo'],
-  },
-  {
-    question: '¿Cuál es tu plazo de lanzamiento estimado?',
-    options: ['Menos de 3 meses', '3 a 6 meses', 'Más de 6 meses', 'No tengo una fecha límite'],
-  },
-  {
-    question: '¿Tienes un equipo o co-fundadores?',
-    options: ['Sí, un equipo completo', 'Sí, uno o dos co-fundadores', 'Estoy solo en esto', 'Estoy en proceso de formación'],
-  },
-];
+import { useTranslation, Trans } from 'react-i18next';
 
 const ReadinessTestSection: React.FC = () => {
+  const { t } = useTranslation();
+
+  const questions = [
+    {
+      question: t('readiness.q1'),
+      options: [t('readiness.q1_o1'), t('readiness.q1_o2'), t('readiness.q1_o3'), t('readiness.q1_o4')],
+    },
+    {
+      question: t('readiness.q2'),
+      options: [t('readiness.q2_o1'), t('readiness.q2_o2'), t('readiness.q2_o3'), t('readiness.q2_o4')],
+    },
+    {
+      question: t('readiness.q3'),
+      options: [t('readiness.q3_o1'), t('readiness.q3_o2'), t('readiness.q3_o3'), t('readiness.q3_o4')],
+    },
+    {
+      question: t('readiness.q4'),
+      options: [t('readiness.q4_o1'), t('readiness.q4_o2'), t('readiness.q4_o3'), t('readiness.q4_o4')],
+    },
+    {
+      question: t('readiness.q5'),
+      options: [t('readiness.q5_o1'), t('readiness.q5_o2'), t('readiness.q5_o3'), t('readiness.q5_o4')],
+    },
+  ];
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [answers, setAnswers] = useState<number[]>([]);
@@ -46,18 +49,18 @@ const ReadinessTestSection: React.FC = () => {
     const score = answers.reduce((total, answer) => total + (3 - answer), 0); // Simple scoring
     if (score > 10) {
       return {
-        title: '¡Estás listo para empezar!',
-        description: 'Tienes una base sólida para comenzar a construir tu proyecto. Contáctanos para dar el siguiente paso.',
+        title: t('readiness.result_ready_title'),
+        description: t('readiness.result_ready_desc'),
       };
     } else if (score > 5) {
       return {
-        title: 'Casi listo',
-        description: 'Tienes una buena idea, pero hay algunas áreas que podemos pulir juntos. Una sesión de consultoría podría ser muy útil.',
+        title: t('readiness.result_almost_title'),
+        description: t('readiness.result_almost_desc'),
       };
     } else {
       return {
-        title: 'Fase de ideación',
-        description: 'Estás en una etapa temprana, ¡y es el momento perfecto para definir una estrategia sólida! Podemos ayudarte a dar forma a tu idea.',
+        title: t('readiness.result_ideation_title'),
+        description: t('readiness.result_ideation_desc'),
       };
     }
   };
@@ -75,9 +78,11 @@ const ReadinessTestSection: React.FC = () => {
     <section className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-4xl font-bold mb-4">
-          Test de <span className="text-purple-400">Preparación</span>
+          <Trans i18nKey="readiness.title">
+            Test de <span className="text-purple-400">Preparación</span>
+          </Trans>
         </h2>
-        <p className="text-gray-400 mb-12">Descubre si tu proyecto está listo para el desarrollo</p>
+        <p className="text-gray-400 mb-12">{t('readiness.subtitle')}</p>
 
         <div 
           className="max-w-2xl mx-auto p-8 rounded-lg border border-gray-800"
@@ -94,13 +99,13 @@ const ReadinessTestSection: React.FC = () => {
                 onClick={resetTest}
                 className="bg-gradient-to-r from-purple-600 to-blue-500 text-white font-bold py-3 px-8 rounded-lg hover:scale-105 transition-transform"
               >
-                Hacer el test de nuevo
+                {t('readiness.retake_test')}
               </button>
             </div>
           ) : (
             <div>
               <div className="flex justify-between items-center mb-4">
-                <p className="font-semibold">Pregunta {currentQuestion + 1} de {questions.length}</p>
+                <p className="font-semibold">{t('readiness.question_of', { current: currentQuestion + 1, total: questions.length })}</p>
                 <p className="text-sm text-purple-400">{Math.round(progress)}%</p>
               </div>
               <div className="w-full bg-gray-700 rounded-full h-2 mb-6">
@@ -135,7 +140,7 @@ const ReadinessTestSection: React.FC = () => {
                   disabled={selectedOption === null}
                   className="bg-gradient-to-r from-purple-600 to-blue-500 text-white font-bold py-3 px-8 rounded-lg hover:scale-105 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Siguiente
+                  {t('readiness.next')}
                 </button>
               </div>
             </div>

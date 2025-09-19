@@ -1,7 +1,11 @@
 
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 const FooterSection: React.FC = () => {
+  const { t } = useTranslation();
+  const year = new Date().getFullYear();
+
   return (
     <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto px-4 text-center">
@@ -17,7 +21,7 @@ const FooterSection: React.FC = () => {
           </a>
         </div>
         <p className="text-gray-500">
-          &copy; {new Date().getFullYear()} Bloom Software Factory. Todos los derechos reservados.
+          {t('footer.copyright', { year })}
         </p>
       </div>
     </footer>
