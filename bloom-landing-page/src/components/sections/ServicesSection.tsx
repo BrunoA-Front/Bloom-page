@@ -2,6 +2,7 @@ import { FaFigma, FaReact, FaNodeJs, FaMobileAlt, FaRocket } from 'react-icons/f
 import { DiRuby } from 'react-icons/di';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
+import { motion } from 'framer-motion';
 
 const ServicesSection: React.FC = () => {
   const { t } = useTranslation();
@@ -39,26 +40,62 @@ const ServicesSection: React.FC = () => {
     },
   ], [t]);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
     <section className="py-20 bg-gray-900 text-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">{t('services.title')}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.h2 
+          className="text-4xl font-bold text-center mb-12"
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          {t('services.title')}
+        </motion.h2>
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
               className="bg-gray-800 p-8 rounded-lg border border-gray-700 hover:border-purple-500 transition-all duration-300 transform hover:-translate-y-2"
               style={{
                 background: 'rgba(255, 255, 255, 0.05)',
                 backdropFilter: 'blur(10px)',
               }}
+              variants={itemVariants}
             >
               {service.icon}
               <h3 className="text-2xl font-bold mb-2">{service.title}</h3>
               <p className="text-gray-400">{service.description}</p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
