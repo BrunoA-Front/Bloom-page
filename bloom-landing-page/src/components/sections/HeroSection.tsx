@@ -1,4 +1,5 @@
 
+import { useMemo } from 'react';
 import { FaBolt } from 'react-icons/fa';
 import HeroBg from '../../assets/images/Hero background.jpg';
 import { useTranslation, Trans } from 'react-i18next';
