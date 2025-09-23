@@ -1,7 +1,5 @@
-
 import { useMemo } from 'react';
 import { FaBolt } from 'react-icons/fa';
-import HeroBg from '../../assets/images/Hero background.jpg';
 import { useTranslation, Trans } from 'react-i18next';
 import LanguageSwitcher from '../ui/LanguageSwitcher';
 import { motion } from 'framer-motion';
@@ -38,25 +36,33 @@ const HeroSection: React.FC = () => {
 
   return (
     <section 
-      className="min-h-screen flex flex-col justify-center items-center bg-gray-900 text-white p-4 bg-cover bg-center relative"
-      style={{ backgroundImage: `url(${HeroBg})` }}
+      className="min-h-screen flex flex-col justify-center items-center text-white p-4 relative overflow-hidden"
     >
+      <iframe 
+        src="/parallel-dimension/dist/index.html"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          border: 'none',
+          zIndex: 0
+        }}
+      />
+      
+
+
       <div className="absolute top-4 left-4 z-20">
         <LanguageSwitcher />
       </div>
-      <div className="absolute inset-0 bg-black opacity-50"></div>
       <motion.div 
         className="relative z-10 text-center w-full max-w-4xl pt-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <motion.div className="flex justify-center items-center gap-2 mb-4" variants={itemVariants}>
-          <span className="text-purple-400">
-            <FaBolt />
-          </span>
-          <span className="font-semibold tracking-widest text-sm">{t('hero.softwareFactory')}</span>
-        </motion.div>
+
         <motion.h1 
           className="text-7xl md:text-9xl font-bold text-purple-400 mb-4"
           variants={itemVariants}
